@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Relay</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #chat { width: 90%; max-width: 400px; margin: auto; }
+        input, button { width: 100%; padding: 10px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h2>WhatsApp Web on Nokia E7</h2>
+    <div id="chat">
+        <input id="chatId" placeholder="Chat ID">
+        <input id="message" placeholder="Your message">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        const socket = io("https://your-hosted-server.com"); // Change to your online server URL
+
+        function sendMessage() {
+            const chatId = document.getElementById("chatId").value;
+            const message = document.getElementById("message").value;
+            socket.emit("sendMessage", { chatId, message });
+        }
+    </script>
+</body>
+</html>
